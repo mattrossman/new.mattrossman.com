@@ -1,11 +1,8 @@
 ---
-import { Image } from 'astro:assets'
+import { Image } from '@astrojs/image/components'
 
 import Card from '../components/Card.astro'
 import Layout from '../layouts/Layout.astro'
-
-import threejs from '../assets/logos/threejs.svg'
-import jsfiddle from '../assets/logos/jsfiddle.png'
 
 import * as JSFiddleThree from '../jsfiddle/three'
 ---
@@ -14,11 +11,11 @@ import * as JSFiddleThree from '../jsfiddle/three'
 	<main class="bg-indigo-200 h-screen px-6 py-12">
 		<h1 class="mb-20 text-2xl font-mono mix-blend-overlay"><b>hey matt,</b><br /><small>what would you like to create?</small></h1>
 		<h2 class="font-bold mb-10 text-2xl flex gap-2">
-			<Image class="rounded border border-black/50" alt="JSFiddle Logo" src={jsfiddle.src} width="32" height="32" />
+			<Image class="rounded border border-black/50 w-8 h-8" alt="JSFiddle Logo" src="/logos/jsfiddle.png" width={64} height={64} />
 			JSFiddle
 		</h2>
 		<Card template={JSFiddleThree} title="three.js">
-			<img slot="thumbnail" src={threejs.src} />
+			<img slot="thumbnail" src="/logos/threejs.svg" />
 		</Card>
 	</main>
 </Layout>
