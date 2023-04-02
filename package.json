@@ -7,7 +7,9 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"deploy": "vercel",
+		"deploy:production": "vercel --prod"
 	},
 	"dependencies": {
 		"@astrojs/tailwind": "^3.1.1",
@@ -16,5 +18,8 @@
 		"astro-icon": "^0.8.0",
 		"sharp": "^0.32.0",
 		"tailwindcss": "^3.0.24"
+	},
+	"devDependencies": {
+		"vercel": "^28.18.3"
 	}
 }
