@@ -1,6 +1,7 @@
-import { THREE_VERSION } from './constants'
+import { THREE_REVISION, THREE_VERSION } from './constants'
 
 export const html = /* html */ `
+<base href="https://rawcdn.githack.com/mrdoob/three.js/r${THREE_REVISION}/examples/" />
 <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 <script type="importmap">
 {
@@ -30,13 +31,6 @@ import { GUI } from 'lil-gui'
 let scene, camera, renderer
 let orbitControls, clock
 let params
-
-const ASSETS_BASE = 'https://rawcdn.githack.com/mrdoob/three.js/0fbae6f682f6e13dd9eb8acde02e4f50c0b73935/examples/'
-
-const GLTF = 'models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'
-const HDRI = 'textures/equirectangular/venice_sunset_1k.hdr'
-
-THREE.DefaultLoadingManager.setURLModifier(url => new URL(url, ASSETS_BASE))
 
 THREE.ColorManagement.enabled = true;
 
@@ -72,8 +66,8 @@ async function init() {
 	const gltfLoader = new GLTFLoader()
 	
 	const [ hdri, gltf ] = await Promise.all([
-		rgbeLoader.loadAsync(HDRI),
-		gltfLoader.loadAsync(GLTF),
+		rgbeLoader.loadAsync('textures/equirectangular/venice_sunset_1k.hdr'),
+		gltfLoader.loadAsync('models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'),
 	])
 	
 	hdri.mapping = THREE.EquirectangularReflectionMapping
