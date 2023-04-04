@@ -1,0 +1,1 @@
+export const THREE_VERSION = '0.151.2'

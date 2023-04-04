@@ -21,25 +21,29 @@ export const css = /* css */ `
 `
 
 export const js = /* js */ `
-
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { GUI } from 'lil-gui'
 
 let scene, camera, renderer
-let mesh, orbitControls, clock
+let orbitControls, clock
 let params
 
-init()
+const GLTF = 'https://rawcdn.githack.com/mrdoob/three.js/0fbae6f682f6e13dd9eb8acde02e4f50c0b73935/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'
+const HDRI = 'https://rawcdn.githack.com/mrdoob/three.js/0fbae6f682f6e13dd9eb8acde02e4f50c0b73935/examples/textures/equirectangular/venice_sunset_1k.hdr'
 
-function init() {
+THREE.ColorManagement.enabled = true;
+
+init().then(animate)
+
+async function init() {
 
 	params = {
-		speed: 1
 	}
 	
 	scene = new THREE.Scene()
-	scene.background = new THREE.Color('black')
 
 	camera = new THREE.PerspectiveCamera(75, undefined, 0.1, 1000)
 	camera.position.set(1, 2, 3)
@@ -54,22 +58,28 @@ function init() {
 	scene.add(ambientLight)
 
 	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setAnimationLoop(animate)
+	renderer.outputEncoding = THREE.sRGBEncoding
+	renderer.toneMapping = THREE.ACESFilmicToneMapping
 	document.body.appendChild(renderer.domElement)
 
 	orbitControls = new OrbitControls(camera, renderer.domElement)
-
-	const grid = new THREE.GridHelper()
-	grid.position.y = -1
-	scene.add(grid)
-
-	const geometry = new THREE.BoxGeometry()
-	const material = new THREE.MeshStandardMaterial({ color: 'palegreen' })
-	mesh = new THREE.Mesh(geometry, material)
-	scene.add(mesh)
+	
+	const rgbeLoader = new RGBELoader()
+	const gltfLoader = new GLTFLoader()
+	
+	const [ hdri, gltf ] = await Promise.all([
+		rgbeLoader.loadAsync(HDRI),
+		gltfLoader.loadAsync(GLTF),
+	])
+	
+	hdri.mapping = THREE.EquirectangularReflectionMapping
+	
+	scene.background = hdri
+	scene.environment = hdri
+	
+	scene.add(gltf.scene)
 
 	const gui = new GUI()
-	gui.add(params, 'speed').step(0.1).min(0).max(2)
 	
 	onWindowResize()
 	
@@ -83,9 +93,9 @@ function animate() {
 
 	orbitControls.update()
 
-	mesh.rotation.x = mesh.rotation.y += dt * params.speed
-
 	renderer.render(scene, camera)
+	
+	requestAnimationFrame(animate)
 
 }
 
