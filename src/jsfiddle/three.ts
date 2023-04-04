@@ -21,81 +21,67 @@ export const css = /* css */ `
 `
 
 export const js = /* js */ `
+
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GUI } from 'lil-gui'
 
-// Scene
+let scene, camera, renderer
+let mesh, orbitControls, clock
+let params
 
-const scene = new THREE.Scene()
-scene.background = new THREE.Color('black')
+init()
 
+function init() {
 
-// Camera
+	params = {
+		speed: 1
+	}
+	
+	scene = new THREE.Scene()
+	scene.background = new THREE.Color('black')
 
-const camera = new THREE.PerspectiveCamera(75, undefined, 0.1, 1000)
-camera.position.set(1, 2, 3)
+	camera = new THREE.PerspectiveCamera(75, undefined, 0.1, 1000)
+	camera.position.set(1, 2, 3)
+	
+	clock = new THREE.Clock()
 
+	const directionalLight = new THREE.DirectionalLight('white')
+	directionalLight.position.set(2, 3, 4)
+	scene.add(directionalLight)
 
-// WebGL renderer
+	const ambientLight = new THREE.AmbientLight('white', 0.3)
+	scene.add(ambientLight)
 
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-document.body.appendChild(renderer.domElement)
+	renderer = new THREE.WebGLRenderer({ antialias: true })
+	renderer.setAnimationLoop(animate)
+	document.body.appendChild(renderer.domElement)
 
+	orbitControls = new OrbitControls(camera, renderer.domElement)
 
-// Lights
+	const grid = new THREE.GridHelper()
+	grid.position.y = -1
+	scene.add(grid)
 
-const directionalLight = new THREE.DirectionalLight('white')
-directionalLight.position.set(2, 3, 4)
-scene.add(directionalLight)
+	const geometry = new THREE.BoxGeometry()
+	const material = new THREE.MeshStandardMaterial({ color: 'palegreen' })
+	mesh = new THREE.Mesh(geometry, material)
+	scene.add(mesh)
 
-const ambientLight = new THREE.AmbientLight('white', 0.3)
-scene.add(ambientLight)
+	const gui = new GUI()
+	gui.add(params, 'speed').step(0.1).min(0).max(2)
+	
+	onWindowResize()
+	
+	window.addEventListener('resize', onWindowResize, false)
+	
+}
 
+function animate() {
 
-// OrbitControls
+	const dt = clock.getDelta()
 
-const controls = new OrbitControls(camera, renderer.domElement)
-
-
-// Grid
-
-const grid = new THREE.GridHelper()
-grid.position.y = -1
-scene.add(grid)
-
-
-// Mesh
-
-const geometry = new THREE.BoxGeometry()
-const material = new THREE.MeshStandardMaterial({ color: 'palegreen' })
-const mesh = new THREE.Mesh(geometry, material)
-
-scene.add(mesh)
-
-
-// GUI
-
-const params = {}
-const gui = new GUI()
-
-params.speed = 1
-gui.add(params, 'speed').step(0.1).min(0).max(2)
-
-
-// Render loop
-
-const clock = new THREE.Clock()
-
-let prevElapsedTime = 0
-
-function render() {
-
-	const elapsedTime = clock.getElapsedTime()
-	const dt = elapsedTime - prevElapsedTime
-	prevElapsedTime = elapsedTime
-
-	controls.update()
+	orbitControls.update()
 
 	mesh.rotation.x = mesh.rotation.y += dt * params.speed
 
@@ -103,10 +89,6 @@ function render() {
 
 }
 
-renderer.setAnimationLoop(render)
-
-
-// Window sizing
 
 function onWindowResize() {
 
@@ -117,8 +99,4 @@ function onWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight)
 
 }
-
-window.addEventListener('resize', onWindowResize, false)
-
-onWindowResize() // Run once to initialize
 `
