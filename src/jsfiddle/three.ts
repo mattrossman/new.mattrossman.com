@@ -14,10 +14,10 @@ export const html = /* html */ `
 `
 
 export const css = /* css */ `
-	canvas {
-		position: absolute;
-		inset: 0;
-	}
+canvas {
+	position: absolute;
+	inset: 0;
+}
 `
 
 export const js = /* js */ `

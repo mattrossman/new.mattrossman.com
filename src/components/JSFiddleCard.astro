@@ -9,9 +9,9 @@ const { title, template } = Astro.props
 
 <form method="post" action="https://jsfiddle.net/api/post/library/pure/" target="_blank">
 	<button>
-		<input type="hidden" name="html" value={template.html} />
-		<input type="hidden" name="css" value={template.css} />
-		<input type="hidden" name="js" value={template.js} />
+		<input type="hidden" name="html" value={template.html.trim()} />
+		<input type="hidden" name="css" value={template.css.trim()} />
+		<input type="hidden" name="js" value={template.js.trim()} />
 		<article class="w-80 bg-white border border-black p-4 rounded">
 			<div class="h-40 flex justify-center">
 				<slot name="thumbnail" />
