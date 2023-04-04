@@ -31,8 +31,12 @@ let scene, camera, renderer
 let orbitControls, clock
 let params
 
-const GLTF = 'https://rawcdn.githack.com/mrdoob/three.js/0fbae6f682f6e13dd9eb8acde02e4f50c0b73935/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'
-const HDRI = 'https://rawcdn.githack.com/mrdoob/three.js/0fbae6f682f6e13dd9eb8acde02e4f50c0b73935/examples/textures/equirectangular/venice_sunset_1k.hdr'
+const ASSETS_BASE = 'https://rawcdn.githack.com/mrdoob/three.js/0fbae6f682f6e13dd9eb8acde02e4f50c0b73935/examples/'
+
+const GLTF = 'models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'
+const HDRI = 'textures/equirectangular/venice_sunset_1k.hdr'
+
+THREE.DefaultLoadingManager.setURLModifier(url => new URL(url, ASSETS_BASE))
 
 THREE.ColorManagement.enabled = true;
 
