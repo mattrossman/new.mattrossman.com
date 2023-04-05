@@ -15,7 +15,7 @@ export const html = /* html */ `
 
 export const css = /* css */ `
 canvas {
-	position: absolute;
+	position: fixed;
 	inset: 0;
 }
 `
