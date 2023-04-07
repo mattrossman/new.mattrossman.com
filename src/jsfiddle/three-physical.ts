@@ -48,13 +48,6 @@ async function init() {
 	
 	clock = new THREE.Clock()
 
-	const directionalLight = new THREE.DirectionalLight('white')
-	directionalLight.position.set(2, 3, 4)
-	scene.add(directionalLight)
-
-	const ambientLight = new THREE.AmbientLight('white', 0.3)
-	scene.add(ambientLight)
-
 	renderer = new THREE.WebGLRenderer({ antialias: true })
 	renderer.outputEncoding = THREE.sRGBEncoding
 	renderer.toneMapping = THREE.ACESFilmicToneMapping
