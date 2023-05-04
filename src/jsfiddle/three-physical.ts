@@ -32,8 +32,6 @@ let scene, camera, renderer
 let orbitControls, clock
 let params
 
-THREE.ColorManagement.enabled = true;
-
 init().then(animate)
 
 async function init() {
@@ -49,7 +47,6 @@ async function init() {
 	clock = new THREE.Clock()
 
 	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.outputEncoding = THREE.sRGBEncoding
 	renderer.toneMapping = THREE.ACESFilmicToneMapping
 	document.body.appendChild(renderer.domElement)
 

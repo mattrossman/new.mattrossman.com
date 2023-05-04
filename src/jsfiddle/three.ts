@@ -1,6 +1,7 @@
-import { THREE_VERSION } from './constants'
+import { THREE_VERSION, THREE_TAG } from './constants'
 
 export const html = /* html */ `
+<base href="https://rawcdn.githack.com/mrdoob/three.js/${THREE_TAG}/examples/" />
 <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 <script type="importmap">
 {
@@ -30,9 +31,9 @@ let scene, camera, renderer
 let mesh, orbitControls, clock
 let params
 
-init()
+init().then(animate)
 
-function init() {
+async function init() {
 
 	params = {
 		speed: 1
@@ -54,7 +55,6 @@ function init() {
 	scene.add(ambientLight)
 
 	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setAnimationLoop(animate)
 	document.body.appendChild(renderer.domElement)
 
 	orbitControls = new OrbitControls(camera, renderer.domElement)
@@ -86,6 +86,8 @@ function animate() {
 	mesh.rotation.x = mesh.rotation.y += dt * params.speed
 
 	renderer.render(scene, camera)
+
+	requestAnimationFrame(animate)
 
 }
 
