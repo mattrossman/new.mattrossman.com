@@ -6,6 +6,7 @@ import Layout from '../layouts/Layout.astro'
 
 import * as JSFiddleThree from '../jsfiddle/three'
 import * as JSFiddleThreePBR from '../jsfiddle/three-physical'
+import * as JSFiddleThreeVRM from '../jsfiddle/three-vrm'
 ---
 
 <Layout title="New Project">
@@ -20,6 +21,9 @@ import * as JSFiddleThreePBR from '../jsfiddle/three-physical'
 				<img slot="thumbnail" src="/logos/threejs.svg" />
 			</JSFiddleCard>
 			<JSFiddleCard template={JSFiddleThreePBR} title="three.js physical">
+				<img slot="thumbnail" src="/logos/threejs.svg" />
+			</JSFiddleCard>
+			<JSFiddleCard template={JSFiddleThreeVRM} title="three.js vrm">
 				<img slot="thumbnail" src="/logos/threejs.svg" />
 			</JSFiddleCard>
 		</section>

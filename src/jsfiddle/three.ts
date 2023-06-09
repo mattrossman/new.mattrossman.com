@@ -4,13 +4,13 @@ export const html = /* html */ `
 <base href="https://rawcdn.githack.com/mrdoob/three.js/${THREE_TAG}/examples/" />
 <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 <script type="importmap">
-{
+	{
 		"imports": {
 			"three": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/build/three.module.js",
 			"three/addons/": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/examples/jsm/",
 			"lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.18.1/dist/lil-gui.esm.min.js"
 		}
-}
+	}
 </script>
 `
 
