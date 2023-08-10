@@ -1,5 +1,6 @@
 ---
 import { Image } from '@astrojs/image/components'
+import { Sprite } from 'astro-icon'
 
 import JSFiddleCard from '../components/JSFiddleCard.astro'
 import Layout from '../layouts/Layout.astro'
@@ -18,13 +19,13 @@ import * as JSFiddleThreeVRM from '../jsfiddle/three-vrm'
 		</h2>
 		<section class="flex gap-6 flex-wrap">
 			<JSFiddleCard template={JSFiddleThree} title="three.js">
-				<img slot="thumbnail" src="/logos/threejs.svg" />
+				<Sprite slot="thumbnail" name="threejs" />
 			</JSFiddleCard>
 			<JSFiddleCard template={JSFiddleThreePBR} title="three.js physical">
-				<img slot="thumbnail" src="/logos/threejs.svg" />
+				<Sprite slot="thumbnail" name="threejs" />
 			</JSFiddleCard>
 			<JSFiddleCard template={JSFiddleThreeVRM} title="three.js vrm">
-				<img slot="thumbnail" src="/logos/threejs.svg" />
+				<Sprite slot="thumbnail" name="threejs" />
 			</JSFiddleCard>
 		</section>
 	</main>
