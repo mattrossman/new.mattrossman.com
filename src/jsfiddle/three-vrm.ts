@@ -1,12 +1,20 @@
+const THREE_VERSION_MAJOR = '154'
+const THREE_VERSION_MINOR = '0'
+
+const THREE_TAG = `r${THREE_VERSION_MAJOR}`
+const THREE_VERSION = `0.${THREE_VERSION_MAJOR}.${THREE_VERSION_MINOR}`
+
+const THREE_VRM_VERSION = '2.0.4'
+
 export const html = /* html */ `
-<base href="https://rawcdn.githack.com/mrdoob/three.js/r151/examples/" />
+<base href="https://rawcdn.githack.com/mrdoob/three.js/${THREE_TAG}/examples/" />
 <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 <script type="importmap">
 	{
 		"imports": {
-			"three": "https://cdn.jsdelivr.net/npm/three@^0.151.0/build/three.module.js",
-			"three/addons/": "https://cdn.jsdelivr.net/npm/three@^0.151.0/examples/jsm/",
-			"@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@1.0.10/lib/three-vrm.module.min.js"
+			"three": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/build/three.module.js",
+			"three/addons/": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/examples/jsm/",
+			"@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@${THREE_VRM_VERSION}/lib/three-vrm.module.min.js"
 		}
 	}
 </script>

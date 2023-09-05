@@ -1,4 +1,4 @@
-import { THREE_VERSION, THREE_TAG } from './constants'
+import { THREE_VERSION, THREE_TAG, LIL_GUI_VERSION } from './constants'
 
 export const html = /* html */ `
 <base href="https://rawcdn.githack.com/mrdoob/three.js/${THREE_TAG}/examples/" />
@@ -8,7 +8,7 @@ export const html = /* html */ `
 		"imports": {
 			"three": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/build/three.module.js",
 			"three/addons/": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/examples/jsm/",
-			"lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.18.1/dist/lil-gui.esm.min.js"
+			"lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@${LIL_GUI_VERSION}/dist/lil-gui.esm.min.js"
 		}
 	}
 </script>

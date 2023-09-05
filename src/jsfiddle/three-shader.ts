@@ -1,4 +1,4 @@
-import { THREE_VERSION, THREE_TAG, LIL_GUI_VERSION } from './constants'
+import { THREE_VERSION, THREE_TAG } from './constants'
 
 export const html = /* html */ `
 <base href="https://rawcdn.githack.com/mrdoob/three.js/${THREE_TAG}/examples/" />
@@ -8,10 +8,24 @@ export const html = /* html */ `
 		"imports": {
 			"three": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/build/three.module.js",
 			"three/addons/": "https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}/examples/jsm/",
-			"lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@${LIL_GUI_VERSION}/dist/lil-gui.esm.min.js"
+			"lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.18.1/dist/lil-gui.esm.min.js"
 		}
 	}
 </script>
+
+<template id="vertex-shader">
+void main() {
+	gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+</template>
+
+<template id="fragment-shader">
+uniform vec3 color;
+
+void main() {
+	gl_FragColor = vec4(color, 1.0);
+}
+</template>
 `
 
 export const css = /* css */ `
@@ -22,7 +36,6 @@ canvas {
 `
 
 export const js = /* js */ `
-
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GUI } from 'lil-gui'
@@ -36,7 +49,7 @@ init().then(animate)
 async function init() {
 
 	params = {
-		speed: 1
+		color: "#ff0000"
 	}
 	
 	scene = new THREE.Scene()
@@ -62,14 +75,25 @@ async function init() {
 	const grid = new THREE.GridHelper()
 	grid.position.y = -1
 	scene.add(grid)
-
-	const geometry = new THREE.BoxGeometry()
-	const material = new THREE.MeshStandardMaterial({ color: 'palegreen' })
+	
+	const vertexShader = document.querySelector("#vertex-shader").content.textContent
+	const fragmentShader = document.querySelector("#fragment-shader").content.textContent
+	const uniforms = {
+		color: { value: new THREE.Color(params.color) }
+	}
+	
+	const geometry = new THREE.SphereGeometry()
+	const material = new THREE.ShaderMaterial({
+		uniforms,
+		vertexShader,
+		fragmentShader
+	})
+	
 	mesh = new THREE.Mesh(geometry, material)
 	scene.add(mesh)
 
 	const gui = new GUI()
-	gui.add(params, 'speed').step(0.1).min(0).max(2)
+	gui.addColor(params, "color").onChange(value => uniforms.color.value.set(value))
 	
 	onWindowResize()
 	
@@ -82,8 +106,6 @@ function animate() {
 	const dt = clock.getDelta()
 
 	orbitControls.update()
-
-	mesh.rotation.x = mesh.rotation.y += dt * params.speed
 
 	renderer.render(scene, camera)
 
