@@ -1,36 +1,69 @@
 ---
-import { Image } from "astro:assets"
+import { Image } from 'astro:assets'
 import { Sprite } from 'astro-icon'
 
-import JSFiddleCard from '../components/JSFiddleCard.astro'
-import Layout from '../layouts/Layout.astro'
+import Layout from '~/layouts/Layout.astro'
+import Card from '~/components/Card.astro'
+import JSFiddleForm from '~/components/JSFiddleForm.astro'
 
 import * as JSFiddleThree from '../jsfiddle/three'
 import * as JSFiddleThreePBR from '../jsfiddle/three-physical'
 import * as JSFiddleThreeVRM from '../jsfiddle/three-vrm'
 import * as JSFiddleThreeShader from '../jsfiddle/three-shader'
+
+const jsfiddles = [
+	{ title: 'three.js', template: JSFiddleThree, icon: 'threejs' },
+	{ title: 'three.js physical', template: JSFiddleThreePBR, icon: 'threejs' },
+	{ title: 'three.js vrm', template: JSFiddleThreeVRM, icon: 'threejs' },
+	{ title: 'three.js shader', template: JSFiddleThreeShader, icon: 'threejs' },
+]
+
+const tsplaygrounds = [{ title: 'blank', code: '' }]
 ---
 
 <Layout title="New Project">
 	<main class="px-6 py-12">
-		<h1 class="mb-20 text-2xl font-mono mix-blend-overlay"><b>hey matt,</b><br /><small>what would you like to create?</small></h1>
-		<h2 class="font-bold mb-10 text-2xl flex gap-2">
-			<Image class="rounded border border-black/50 w-8 h-8" alt="JSFiddle Logo" src="/logos/jsfiddle.png" width={64} height={64} />
-			JSFiddle
-		</h2>
-		<section class="flex gap-6 flex-wrap">
-			<JSFiddleCard template={JSFiddleThree} title="three.js">
-				<Sprite slot="thumbnail" name="threejs" />
-			</JSFiddleCard>
-			<JSFiddleCard template={JSFiddleThreePBR} title="three.js physical">
-				<Sprite slot="thumbnail" name="threejs" />
-			</JSFiddleCard>
-			<JSFiddleCard template={JSFiddleThreeVRM} title="three.js vrm">
-				<Sprite slot="thumbnail" name="threejs" />
-			</JSFiddleCard>
-			<JSFiddleCard template={JSFiddleThreeShader} title="three.js shader">
-				<Sprite slot="thumbnail" name="threejs" />
-			</JSFiddleCard>
+		<h1 class="mb-20 font-mono text-2xl mix-blend-overlay"><b>hey matt,</b><br /><small>what would you like to create?</small></h1>
+		{/* JSFiddle */}
+		<section>
+			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
+				<Image class="h-8 w-8 rounded border border-black/50" alt="JSFiddle Logo" src="/logos/jsfiddle.png" width={64} height={64} />
+				 JSFiddle
+			</h2>
+			<ul class="flex flex-wrap gap-6">
+				{
+					jsfiddles.map((entry) => (
+						<li>
+							<JSFiddleForm html={entry.template.html} css={entry.template.css} js={entry.template.js}>
+								<Card title={entry.title}>
+									<Sprite slot="thumbnail" name={entry.icon} />
+								</Card>
+							</JSFiddleForm>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		{/* TypeScript Playground */}
+		<section>
+			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
+				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/typescript.svg" width={64} height={64} />
+				 TypeScript Playground
+			</h2>
+			<ul class="flex flex-wrap gap-6">
+				{
+					tsplaygrounds.map((entry) => (
+						<li>
+							<a href={`https://www.typescriptlang.org/play?#src=${entry.code}`}>
+								<Card title={entry.title}>
+									<Image slot="thumbnail" src="/logos/typescript.svg" alt="" width={64} height={64} />
+								</Card>
+							</a>
+						</li>
+					))
+				}
+			</ul>
 		</section>
 	</main>
 </Layout>
