@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets'
+import JSFiddleForm from './JSFiddleForm.astro'
+import SmallCard from './SmallCard.astro'
+
+export type IEntry = {
+	title: string
+	/* Code parts for JSFiddle */
+	jsfiddle?: { html: string; css: string; js: string }
+	/* Code for TypeScript Playground */
+	tsplayground?: string
+	custom?: { href: string; image: string }
+}
+
+type Props = {
+	entry: IEntry
+}
+
+const { entry } = Astro.props
+---
+
+{
+	entry.jsfiddle !== undefined && (
+		<JSFiddleForm html={entry.jsfiddle.html} css={entry.jsfiddle.css} js={entry.jsfiddle.js}>
+			<SmallCard title={entry.title}>
+				<Image class="object-contain" slot="thumbnail" alt="JSFiddle Logo" src="/logos/jsfiddle.png" width={64} height={64} />
+			</SmallCard>
+		</JSFiddleForm>
+	)
+}
+{
+	entry.tsplayground !== undefined && (
+		<a href={`https://www.typescriptlang.org/play?#src=${entry.tsplayground}`}>
+			<SmallCard title={entry.title}>
+				<Image class="object-contain" slot="thumbnail" src="/logos/typescript.svg" alt="" width={64} height={64} />
+			</SmallCard>
+		</a>
+	)
+}
+{
+	entry.custom !== undefined && (
+		<a href={entry.custom.href}>
+			<SmallCard title={entry.title}>
+				<Image class="object-contain" slot="thumbnail" src={entry.custom.image} alt="" width={64} height={64} />
+			</SmallCard>
+		</a>
+	)
+}
