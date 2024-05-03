@@ -20,12 +20,19 @@ const ENTRIES_THREEJS: Array<IEntry> = [
 
 const ENTRIES_R3F: Array<IEntry> = [
 	{
-		title: 'Vite + TypeScript',
+		title: 'Vite + TS',
 		custom: { href: 'https://stackblitz.com/https://github.com/mattrossman/r3f-vite-ts', image: '/logos/stackblitz.svg' },
 	},
 	{
-		title: 'Vite + TypeScript',
-		custom: { href: 'https://github.com/mattrossman/r3f-vite-ts', image: '/logos/github.svg' },
+		title: 'Vite + TS',
+		custom: { href: 'https://github.com/mattrossman/r3f-vite-ts', image: '/logos/stackblitz.svg' },
+	},
+]
+
+const ENTRIES_REACT: Array<IEntry> = [
+	{
+		title: 'Vite + TS + Tailwind',
+		custom: { href: 'https://stackblitz.com/edit/vitejs-vite-hhkg1h?file=src%2FApp.tsx&terminal=dev', image: '/logos/stackblitz.svg' },
 	},
 ]
 
@@ -80,6 +87,23 @@ const ENTRIES_TSPLAYGROUND: Array<IEntry> = [{ title: 'Blank', tsplayground: '' 
 			<ul class="flex flex-wrap gap-6">
 				{
 					ENTRIES_TSPLAYGROUND.map((entry) => (
+						<li>
+							<Entry entry={entry} />
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		{/* React */}
+		<section>
+			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
+				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/react.svg" width={64} height={64} />
+				 React
+			</h2>
+			<ul class="flex flex-wrap gap-6">
+				{
+					ENTRIES_REACT.map((entry) => (
 						<li>
 							<Entry entry={entry} />
 						</li>
