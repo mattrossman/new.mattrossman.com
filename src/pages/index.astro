@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import { Sprite } from 'astro-icon'
+import { Icon } from 'astro-icon/components'
 
 import Layout from '~/layouts/Layout.astro'
 import Entry, { type IEntry } from '~/components/Entry.astro'
@@ -53,7 +53,7 @@ const ENTRIES_PLAYGROUND: Array<IEntry> = [
 		<section>
 			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
 				<div class="flex h-8 w-8 rounded border border-black/50 bg-white">
-					<Sprite name="threejs" />
+					<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/threejs.svg" width={64} height={64} />
 				</div>
 				 Three.js
 			</h2>
