@@ -40,7 +40,10 @@ const ENTRIES_REACT: Array<IEntry> = [
 	},
 ]
 
-const ENTRIES_TSPLAYGROUND: Array<IEntry> = [{ title: 'Blank', tsplayground: '' }]
+const ENTRIES_PLAYGROUND: Array<IEntry> = [
+	{ title: 'Blank', tsplayground: '' },
+	{ title: 'Effect', custom: { href: 'https://effect.website/play', image: '/logos/effect.png' } },
+]
 ---
 
 <Layout title="New Project">
@@ -86,11 +89,11 @@ const ENTRIES_TSPLAYGROUND: Array<IEntry> = [{ title: 'Blank', tsplayground: '' 
 		<section>
 			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
 				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/typescript.svg" width={64} height={64} />
-				 TypeScript Playground
+				 Playground
 			</h2>
 			<ul class="flex flex-wrap gap-6">
 				{
-					ENTRIES_TSPLAYGROUND.map((entry) => (
+					ENTRIES_PLAYGROUND.map((entry) => (
 						<li>
 							<Entry entry={entry} />
 						</li>
