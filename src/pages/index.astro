@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets'
-import { Icon } from 'astro-icon/components'
 
 import Layout from '~/layouts/Layout.astro'
 import Entry, { type IEntry } from '~/components/Entry.astro'
@@ -43,6 +42,7 @@ const ENTRIES_REACT: Array<IEntry> = [
 const ENTRIES_PLAYGROUND: Array<IEntry> = [
 	{ title: 'Blank', tsplayground: '' },
 	{ title: 'Effect', custom: { href: 'https://effect.website/play', image: '/logos/effect.png' } },
+	{ title: 'Tailwind CSS', custom: { href: 'https://play.tailwindcss.com/', image: '/logos/tailwind.svg' } },
 ]
 ---
 
