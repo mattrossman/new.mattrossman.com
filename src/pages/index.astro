@@ -39,6 +39,11 @@ const ENTRIES_REACT: Array<IEntry> = [
 	},
 ]
 
+const ENTRIES_NODE: Array<IEntry> = [
+	// { title: 'TSX', custom: { href: 'https://stackblitz.com/https://github.com/mattrossman/node-starter', image: '/logos/stackblitz.svg' } },
+	{ title: 'TSX', custom: { href: 'https://github.com/mattrossman/node-starter', image: '/logos/github.svg' } },
+]
+
 const ENTRIES_PLAYGROUND: Array<IEntry> = [
 	{ title: 'Blank', tsplayground: '' },
 	{ title: 'Effect', custom: { href: 'https://effect.website/play', image: '/logos/effect.png' } },
@@ -50,6 +55,7 @@ const ENTRIES_PLAYGROUND: Array<IEntry> = [
 	<main class="px-6 py-12">
 		<h1 class="mb-20 font-mono text-2xl mix-blend-overlay"><b>hey matt,</b><br /><small>what would you like to create?</small></h1>
 
+		{/* Three.js */}
 		<section>
 			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
 				<div class="flex h-8 w-8 rounded border border-black/50 bg-white">
@@ -68,7 +74,7 @@ const ENTRIES_PLAYGROUND: Array<IEntry> = [
 			</ul>
 		</section>
 
-		{/* TypeScript Playground */}
+		{/* React Three Fiber */}
 		<section>
 			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
 				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/poimandres.png" width={64} height={64} />
@@ -85,7 +91,7 @@ const ENTRIES_PLAYGROUND: Array<IEntry> = [
 			</ul>
 		</section>
 
-		{/* TypeScript Playground */}
+		{/* Playgrounds */}
 		<section>
 			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
 				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/typescript.svg" width={64} height={64} />
@@ -111,6 +117,23 @@ const ENTRIES_PLAYGROUND: Array<IEntry> = [
 			<ul class="flex flex-wrap gap-6">
 				{
 					ENTRIES_REACT.map((entry) => (
+						<li>
+							<Entry entry={entry} />
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		{/* Node.js */}
+		<section>
+			<h2 class="mb-10 mt-16 flex gap-2 text-2xl font-bold">
+				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/nodejs.svg" width={64} height={64} />
+				 Node.js
+			</h2>
+			<ul class="flex flex-wrap gap-6">
+				{
+					ENTRIES_NODE.map((entry) => (
 						<li>
 							<Entry entry={entry} />
 						</li>
