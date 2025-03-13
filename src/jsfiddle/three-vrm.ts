@@ -1,10 +1,10 @@
-const THREE_VERSION_MAJOR = '154'
+const THREE_VERSION_MAJOR = '169'
 const THREE_VERSION_MINOR = '0'
 
 const THREE_TAG = `r${THREE_VERSION_MAJOR}`
 const THREE_VERSION = `0.${THREE_VERSION_MAJOR}.${THREE_VERSION_MINOR}`
 
-const THREE_VRM_VERSION = '2.0.4'
+const THREE_VRM_VERSION = '3.3.6'
 
 export const html = /* html */ `
 <base href="https://rawcdn.githack.com/mrdoob/three.js/${THREE_TAG}/examples/" />
@@ -63,10 +63,7 @@ async function init() {
 	orbitControls = new OrbitControls(camera, renderer.domElement)
 	orbitControls.target.set(0, 1, 0)
 	
-	const ambientLight = new THREE.AmbientLight()
-	scene.add(ambientLight)
-	
-	const directionalLight = new THREE.DirectionalLight()
+	const directionalLight = new THREE.DirectionalLight("white", Math.PI)
 	scene.add(directionalLight)
 	
 	const gltfLoader = new GLTFLoader()
@@ -78,7 +75,7 @@ async function init() {
 	currentVrm = gltf.userData.vrm
 	
 	VRMUtils.removeUnnecessaryVertices( gltf.scene );
-	VRMUtils.removeUnnecessaryJoints( gltf.scene );
+	VRMUtils.combineSkeletons( gltf.scene );
 	VRMUtils.rotateVRM0( gltf.scene )
 	
 	scene.add(gltf.scene)
