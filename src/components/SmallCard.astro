@@ -6,8 +6,8 @@ type Props = {
 const { title } = Astro.props
 ---
 
-<article class="flex w-80 items-center gap-4 overflow-hidden rounded border border-black bg-white">
-	<div class="flex h-16 w-16 justify-stretch bg-white [&>*]:flex-1">
+<article class="flex w-60 items-center gap-4 overflow-hidden rounded border border-black bg-white">
+	<div class="flex h-10 w-10 justify-stretch bg-white [&>*]:flex-1">
 		<slot name="thumbnail" />
 	</div>
 	<header class="font-semibold">{title}</header>

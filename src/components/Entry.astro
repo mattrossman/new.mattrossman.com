@@ -16,6 +16,8 @@ type Props = {
 	entry: IEntry
 }
 
+const IMAGE_SIZE = 64
+
 const { entry } = Astro.props
 ---
 
@@ -23,7 +25,14 @@ const { entry } = Astro.props
 	entry.jsfiddle !== undefined && (
 		<JSFiddleForm html={entry.jsfiddle.html} css={entry.jsfiddle.css} js={entry.jsfiddle.js}>
 			<SmallCard title={entry.title}>
-				<Image class="object-contain" slot="thumbnail" alt="JSFiddle Logo" src="/logos/jsfiddle.png" width={64} height={64} />
+				<Image
+					class="object-contain"
+					slot="thumbnail"
+					alt="JSFiddle Logo"
+					src="/logos/jsfiddle.png"
+					width={IMAGE_SIZE}
+					height={IMAGE_SIZE}
+				/>
 			</SmallCard>
 		</JSFiddleForm>
 	)
@@ -32,7 +41,7 @@ const { entry } = Astro.props
 	entry.tsplayground !== undefined && (
 		<a href={`https://www.typescriptlang.org/play?#src=${entry.tsplayground}`}>
 			<SmallCard title={entry.title}>
-				<Image class="object-contain" slot="thumbnail" src="/logos/typescript.svg" alt="" width={64} height={64} />
+				<Image class="object-contain" slot="thumbnail" src="/logos/typescript.svg" alt="" width={IMAGE_SIZE} height={IMAGE_SIZE} />
 			</SmallCard>
 		</a>
 	)
@@ -41,7 +50,7 @@ const { entry } = Astro.props
 	entry.custom !== undefined && (
 		<a href={entry.custom.href}>
 			<SmallCard title={entry.title}>
-				<Image class="object-contain" slot="thumbnail" src={entry.custom.image} alt="" width={64} height={64} />
+				<Image class="object-contain" slot="thumbnail" src={entry.custom.image} alt="" width={IMAGE_SIZE} height={IMAGE_SIZE} />
 			</SmallCard>
 		</a>
 	)
