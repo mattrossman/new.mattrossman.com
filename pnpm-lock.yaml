@@ -17,6 +17,9 @@ importers:
       astro:
         specifier: ^5.10.1
         version: 5.10.1(@types/node@20.12.12)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.35.0)(typescript@5.4.5)(yaml@2.4.2)
+      astro-masonry:
+        specifier: ^1.2.2
+        version: 1.2.2
       sharp:
         specifier: ^0.32.5
         version: 0.32.5
@@ -812,6 +815,9 @@ packages:
 
   array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
+
+  astro-masonry@1.2.2:
+    resolution: {integrity: sha512-416VOoR+6dVjOyM2pxlQFj4AiFIV6NdA6WFUFqkVTitaG61o+5Sz0YTA20FAW7xnbIVWru9h6XIWNeEy3hiPmA==}
 
   astro@5.10.1:
     resolution: {integrity: sha512-DJVmt+51jU1xmgmAHCDwuUgcG/5aVFSU+tcX694acAZqPVt8EMUAmUZcJDX36Z7/EztnPph9HR3pm72jS2EgHQ==}
@@ -3298,6 +3304,8 @@ snapshots:
   aria-query@5.3.2: {}
 
   array-iterate@2.0.1: {}
+
+  astro-masonry@1.2.2: {}
 
   astro@5.10.1(@types/node@20.12.12)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.35.0)(typescript@5.4.5)(yaml@2.4.2):
     dependencies:

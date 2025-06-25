@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { Masonry } from 'astro-masonry'
 
 import Layout from '~/layouts/Layout.astro'
 import Entry, { type IEntry } from '~/components/Entry.astro'
@@ -8,34 +8,31 @@ import * as JSFiddleThree from '../jsfiddle/three'
 import * as JSFiddleThreePBR from '../jsfiddle/three-physical'
 import * as JSFiddleThreeVRM from '../jsfiddle/three-vrm'
 import * as JSFiddleThreeShader from '../jsfiddle/three-shader'
+import EntrySection from '~/components/EntrySection.astro'
 
-const ENTRIES_THREEJS: Array<IEntry> = [
-	{ title: 'Minimal', jsfiddle: JSFiddleThree },
-	{ title: 'PBR', jsfiddle: JSFiddleThreePBR },
-	{ title: 'VRM', jsfiddle: JSFiddleThreeVRM },
-	{ title: 'Shader', jsfiddle: JSFiddleThreeShader },
-	{ title: 'Minimal', custom: { href: 'https://glitch.com/~matt-three-boilerplate', image: '/logos/glitch.svg' } },
-]
-
-const ENTRIES_R3F: Array<IEntry> = [
+const ENTRIES_2D: Array<IEntry> = [
 	{
-		title: 'Vite + TS',
-		custom: { href: 'https://stackblitz.com/https://github.com/mattrossman/r3f-vite-ts', image: '/logos/stackblitz.svg' },
-	},
-	{
-		title: 'Vite + TS',
-		custom: { href: 'https://github.com/mattrossman/r3f-vite-ts', image: '/logos/github.svg' },
-	},
-]
-
-const ENTRIES_REACT: Array<IEntry> = [
-	{
-		title: 'Vite + TS',
+		title: 'React',
 		custom: { href: 'https://stackblitz.com/https://github.com/mattrossman/react-vite-ts', image: '/logos/stackblitz.svg' },
 	},
 	{
-		title: 'Vite + TS',
+		title: 'React',
 		custom: { href: 'https://github.com/mattrossman/react-vite-ts', image: '/logos/github.svg' },
+	},
+]
+
+const ENTRIES_3D: Array<IEntry> = [
+	{ title: 'Three.js Minimal', jsfiddle: JSFiddleThree },
+	{ title: 'Three.js PBR', jsfiddle: JSFiddleThreePBR },
+	{ title: 'Three.js VRM', jsfiddle: JSFiddleThreeVRM },
+	{ title: 'Three.js Shader', jsfiddle: JSFiddleThreeShader },
+	{
+		title: 'R3F',
+		custom: { href: 'https://stackblitz.com/https://github.com/mattrossman/r3f-vite-ts', image: '/logos/stackblitz.svg' },
+	},
+	{
+		title: 'R3F',
+		custom: { href: 'https://github.com/mattrossman/r3f-vite-ts', image: '/logos/github.svg' },
 	},
 ]
 
@@ -50,97 +47,31 @@ const ENTRIES_PLAYGROUND: Array<IEntry> = [
 	{ title: 'Effect', custom: { href: 'https://effect.website/play', image: '/logos/effect.png' } },
 	{ title: 'Tailwind CSS', custom: { href: 'https://play.tailwindcss.com/', image: '/logos/tailwind.svg' } },
 ]
+
+const ENTRIES_DEPLOY: Array<IEntry> = [
+	{ title: 'GitHub Pages', custom: { href: 'https://github.com/mattrossman/deploy-gh-pages', image: '/logos/github.svg' } },
+]
 ---
 
 <Layout title="New Project">
 	<main class="px-6 py-3">
 		<h1 class="font-mono text-xl mix-blend-overlay"><b>hey matt,</b><br /><small>what would you like to create?</small></h1>
-
-		{/* Three.js */}
-		<section>
-			<h2 class="mb-6 mt-16 flex gap-2 text-xl font-bold">
-				<div class="flex h-8 w-8 rounded border border-black/50 bg-white">
-					<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/threejs.svg" width={64} height={64} />
-				</div>
-				 Three.js
-			</h2>
-			<ul class="flex flex-wrap gap-6">
-				{
-					ENTRIES_THREEJS.map((entry) => (
-						<li>
-							<Entry entry={entry} />
-						</li>
-					))
-				}
-			</ul>
-		</section>
-
-		{/* React Three Fiber */}
-		<section>
-			<h2 class="mb-6 mt-16 flex gap-2 text-xl font-bold">
-				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/poimandres.png" width={64} height={64} />
-				 React Three Fiber
-			</h2>
-			<ul class="flex flex-wrap gap-6">
-				{
-					ENTRIES_R3F.map((entry) => (
-						<li>
-							<Entry entry={entry} />
-						</li>
-					))
-				}
-			</ul>
-		</section>
-
-		{/* Playgrounds */}
-		<section>
-			<h2 class="mb-6 mt-16 flex gap-2 text-xl font-bold">
-				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/typescript.svg" width={64} height={64} />
-				 Playground
-			</h2>
-			<ul class="flex flex-wrap gap-6">
-				{
-					ENTRIES_PLAYGROUND.map((entry) => (
-						<li>
-							<Entry entry={entry} />
-						</li>
-					))
-				}
-			</ul>
-		</section>
-
-		{/* React */}
-		<section>
-			<h2 class="mb-6 mt-16 flex gap-2 text-xl font-bold">
-				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/react.svg" width={64} height={64} />
-				 React
-			</h2>
-			<ul class="flex flex-wrap gap-6">
-				{
-					ENTRIES_REACT.map((entry) => (
-						<li>
-							<Entry entry={entry} />
-						</li>
-					))
-				}
-			</ul>
-		</section>
-
-		{/* Node.js */}
-		<section>
-			<h2 class="mb-6 mt-16 flex gap-2 text-xl font-bold">
-				<Image class="h-8 w-8 rounded border border-black/50" alt="TypeScript Logo" src="/logos/nodejs.svg" width={64} height={64} />
-				 Node.js
-			</h2>
-			<ul class="flex flex-wrap gap-6">
-				{
-					ENTRIES_NODE.map((entry) => (
-						<li>
-							<Entry entry={entry} />
-						</li>
-					))
-				}
-			</ul>
-		</section>
+		<Masonry
+			class="mt-8 gap-4"
+			columnClass="gap-4 flex flex-col"
+			breakpointCols={{
+				default: 4,
+				1100: 3,
+				700: 2,
+				500: 1,
+			}}
+			sortByHeight
+		>
+			<EntrySection title="2D" emoji="🖥️" entries={ENTRIES_2D} />
+			<EntrySection title="3D" emoji="🎨" entries={ENTRIES_3D} />
+			<EntrySection title="Backend" emoji="⚙️" entries={ENTRIES_NODE} />
+			<EntrySection title="Playground" emoji="🧪" entries={ENTRIES_PLAYGROUND} />
+			<EntrySection title="Deploy" emoji="🚀" entries={ENTRIES_DEPLOY} />
+		</Masonry>
 	</main>
 </Layout>

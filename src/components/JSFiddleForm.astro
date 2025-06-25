@@ -9,7 +9,7 @@ const { html, css, js } = Astro.props
 ---
 
 <form method="post" action="https://jsfiddle.net/api/post/library/pure/" target="_blank">
-	<button>
+	<button class="block w-full cursor-pointer">
 		<input type="hidden" name="html" value={html.trim()} />
 		<input type="hidden" name="css" value={css.trim()} />
 		<input type="hidden" name="js" value={js.trim()} />

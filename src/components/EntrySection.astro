@@ -1,0 +1,27 @@
+---
+import Entry, { type IEntry } from './Entry.astro'
+
+type Props = {
+	title: string
+	emoji: string
+	entries: Array<IEntry>
+}
+
+const { title, emoji, entries } = Astro.props
+---
+
+<section class="rounded-xl bg-white/50 p-6">
+	<h2 class="mb-4 flex items-center gap-2 text-lg font-bold">
+		<span class="text-xl">{emoji}</span>
+		{title}
+	</h2>
+	<ul class="flex flex-col gap-3">
+		{
+			entries.map((entry) => (
+				<li>
+					<Entry entry={entry} />
+				</li>
+			))
+		}
+	</ul>
+</section>

@@ -10,13 +10,15 @@ export type IEntry = {
 	/* Code for TypeScript Playground */
 	tsplayground?: string
 	custom?: { href: string; image: string }
+	// For grouped cards with multiple links
+	links?: Array<{ href: string; image: string; label: string }>
 }
 
 type Props = {
 	entry: IEntry
 }
 
-const IMAGE_SIZE = 64
+const IMAGE_SIZE = 32
 
 const { entry } = Astro.props
 ---
